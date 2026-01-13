@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            >
+
+            <LinearLayout
+                android:id="@+id/btnParametros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:layout_marginBottom="16dp"
+                android:focusable="true">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cambiar_parametros"
+                    android:backgroundTint="@color/darkGreen"
+                    app:cornerRadius="8dp"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/btnTema"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
+                android:gravity="center_vertical"
+                android:clickable="true"
+                android:focusable="true">
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tema"
+                    android:backgroundTint="@color/darkGreen"
+                    app:cornerRadius="8dp"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp"
+                android:animateLayoutChanges="true"
+                android:background="@color/diedGreen"
+                >
+
+                <LinearLayout
+                    android:id="@+id/headerIdioma"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true"
+                    >
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/idioma"
+                        android:textStyle="bold"
+
+                        android:textColor="@color/white"/>
+                    <ImageView
+                        android:id="@+id/arrowIdioma"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/arrow_down_float"
+                        app:tint="@color/white"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/contentIdioma"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Español" android:padding="8dp" android:textColor="@android:color/black"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Inglés" android:padding="8dp" android:textColor="@android:color/black"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Catalán" android:padding="8dp" android:textColor="@android:color/black"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp"
+                android:layout_marginBottom="16dp"
+                android:animateLayoutChanges="true"
+                android:background="@color/diedGreen"
+                >
+
+                <LinearLayout
+                    android:id="@+id/headerNosotros"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:clickable="true"
+                    android:focusable="true">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Sobre nosotros"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"/>
+                    <ImageView
+                        android:id="@+id/arrowNosotros"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@android:drawable/arrow_down_float"
+                        app:tint="@color/white"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/contentNosotros"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+                </LinearLayout>
+            </LinearLayout>
+            <ImageView
+                android:layout_marginTop="100dp"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/logo"
+                app:tint="@color/darkGreen"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginBottom="20dp"
+                />
+        </LinearLayout>
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@android:drawable/ic_menu_revert"
+        android:padding="12dp"
+        app:tint="@android:color/black"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:contentDescription="@string/volver_atr_s"
+        android:layout_gravity="top|start" />
+
+</FrameLayout>
