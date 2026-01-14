@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:background="@color/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignInActivity">
@@ -20,7 +21,7 @@
             android:layout_width="200dp"
             android:layout_height="160dp"
             android:src="@drawable/logo"
-            app:tint="@color/darkGreen"
+            app:tint="@color/primary"
             />
     </LinearLayout>
 
@@ -41,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="@string/crear_una_cuenta"
             android:textSize="16sp"
-            android:textColor="@color/darkGreen"
+            android:textColor="@color/primary"
             android:textStyle="bold"
             />
 
@@ -54,6 +55,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
             android:layout_marginLeft="20dp"
+            android:textColor="@color/text_secondary"
             />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -61,6 +63,10 @@
             android:layout_height="wrap_content"
             android:hint="@string/email_domain_com"
             app:boxBackgroundMode="outline"
+            app:boxBackgroundColor="@color/surface"
+            android:textColorHint="@color/text_secondary"
+            app:hintTextColor="@color/primary"
+            app:boxStrokeColor="@color/primary"
             app:boxStrokeWidth="2dp"
             app:boxCornerRadiusTopEnd="10dp"
             app:boxCornerRadiusTopStart="10dp"
@@ -88,6 +94,10 @@
             android:layout_height="wrap_content"
             android:hint="@string/contrase_a"
             app:boxBackgroundMode="outline"
+            app:boxBackgroundColor="@color/surface"
+            android:textColorHint="@color/text_secondary"
+            app:hintTextColor="@color/primary"
+            app:boxStrokeColor="@color/primary"
             app:boxCornerRadiusTopEnd="10dp"
             app:boxCornerRadiusTopStart="10dp"
             app:boxCornerRadiusBottomEnd="10dp"
@@ -114,6 +124,10 @@
             android:layout_height="wrap_content"
             android:hint="@string/repetir_contrase_a"
             app:boxBackgroundMode="outline"
+            app:boxBackgroundColor="@color/surface"
+            android:textColorHint="@color/text_secondary"
+            app:hintTextColor="@color/primary"
+            app:boxStrokeColor="@color/primary"
             app:boxCornerRadiusTopEnd="10dp"
             app:boxCornerRadiusTopStart="10dp"
             app:boxCornerRadiusBottomEnd="10dp"
@@ -136,7 +150,8 @@
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/darkGreen"
+            android:backgroundTint="@color/primary"
+            android:textColor="@color/on_primary"
             android:text="@string/registrarse"
             app:cornerRadius="8dp"
             android:textSize="14sp"
@@ -152,10 +167,11 @@
             android:text="@string/al_hacer_clic_en_continuar_aceptas_nuestros_t_rminos_de_servicio_y_nuestra_pol_tica_de_privacidad"
             android:textSize="12sp"
             android:textAlignment="center"
-            android:textColor="@color/darkGreen"
+            android:textColor="@color/text_secondary"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
+            android:background="@color/surface"
             />
     </LinearLayout>
 
@@ -165,7 +181,7 @@
         android:layout_height="48dp"
         android:src="@android:drawable/ic_menu_revert"
         android:padding="12dp"
-        app:tint="@android:color/black"
+        app:tint="@color/text_primary"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:contentDescription="@string/volver_atr_s"

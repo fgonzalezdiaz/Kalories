@@ -6,7 +6,9 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
     android:padding="24dp"
     tools:context=".WeightProgress">
     <ImageView
@@ -15,7 +17,7 @@
         android:layout_height="48dp"
         android:src="@android:drawable/ic_menu_revert"
         android:padding="10dp"
-        app:tint="@android:color/black"
+        app:tint="@color/text_primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         />
@@ -36,7 +38,7 @@
         android:text="@string/peso_actual"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="@color/text_primary"
         android:letterSpacing="0.05"
         android:layout_marginTop="40dp"
         />
@@ -48,7 +50,7 @@
         android:text="@string/_76kg"
         android:textSize="36sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="@color/primary"
         android:layout_marginTop="8dp"
         />
 
@@ -61,6 +63,7 @@
         android:layout_marginTop="30dp"
         android:layout_marginBottom="30dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:tint="@color/primary"
         app:layout_constraintEnd_toEndOf="parent"/>
 
     <com.google.android.material.button.MaterialButton
@@ -69,7 +72,8 @@
         android:layout_height="70dp"
         android:text="@string/introducir_nuevo_peso"
         app:cornerRadius="8dp"
-        android:backgroundTint="@color/darkGreen"
+        android:textColor="@color/on_primary"
+        android:backgroundTint="@color/primary"
         />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

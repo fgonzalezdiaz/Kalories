@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".Gender"
     >
 
@@ -27,7 +28,7 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:layout_marginVertical="15dp"
-            android:textColor="@color/diedGreen"/>
+            android:textColor="@color/primary"/>
 
 
         <Spinner
@@ -43,14 +44,15 @@
             android:layout_height="45dp"
             android:layout_margin="10dp"
             android:text="@string/continuar"
-            android:backgroundTint="@color/darkGreen"
+            android:backgroundTint="@color/primary"
+            android:textColor="@color/on_primary"
             />
     </LinearLayout>
     <ImageView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:src="@drawable/logo"
-        app:tint="@color/darkGreen"
+        app:tint="@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +64,7 @@
         android:layout_height="48dp"
         android:src="@android:drawable/ic_menu_revert"
         android:padding="12dp"
-        app:tint="@android:color/black"
+        app:tint="@color/text_primary"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:contentDescription="@string/volver_atr_s"

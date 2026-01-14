@@ -6,6 +6,7 @@
 
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".BirthDate">
 
         <LinearLayout
@@ -25,7 +26,7 @@
                 android:text="@string/fecha_de_nacimiento"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="@color/darkGreen"
+                android:textColor="@color/primary"
                 android:paddingBottom="20dp"/>
         </LinearLayout>
         <LinearLayout
@@ -37,7 +38,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:orientation="horizontal"
-            android:background="@color/white"
+            android:background="@color/surface"
             android:paddingLeft="0dp"
             android:paddingRight="0dp"
             android:gravity="center"
@@ -46,14 +47,14 @@
                 android:id="@+id/etFechaNacimiento"
                 android:layout_width="wrap_content"
                 android:layout_height="49dp"
-                android:background="@color/white"
+                android:background="@color/surface"
                 android:paddingEnd="170dp"
                 android:paddingStart="15dp"
                 android:hint="@string/_24_04_2005"
                 android:textSize="15sp"
                 android:inputType="date"
-
-
+                android:textColor="@color/text_primary"
+                android:textColorHint="@color/text_secondary"
                 />
             <ImageButton
                 android:id="@+id/ibCalendar"
@@ -62,6 +63,7 @@
                 android:src="@drawable/vector_calendar"
                 android:layout_marginHorizontal="1dp"
                 android:layout_marginVertical="4dp"
+                app:tint="@color/primary"
                 />
 
         </LinearLayout>
@@ -81,7 +83,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/dd_mm_yyyy"
-                android:textColor="@color/diedGreen"
+                android:textColor="@color/text_secondary"
                 />
         </LinearLayout>
 
@@ -94,13 +96,14 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:text="@string/continuar"
-            android:backgroundTint="@color/darkGreen"
+            android:backgroundTint="@color/primary"
+            android:textColor="@color/on_primary"
         />
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:src="@drawable/logo"
-            app:tint="@color/darkGreen"
+            app:tint="@color/primary"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -115,7 +118,7 @@
         android:layout_height="48dp"
         android:src="@android:drawable/ic_menu_revert"
         android:padding="12dp"
-        app:tint="@android:color/black"
+        app:tint="@color/text_primary"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:contentDescription="@string/volver_atr_s"
