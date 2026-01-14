@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".historial_de_pesos"
+            android:exported="false" />
+        <activity
             android:name=".DailyReports"
             android:exported="false" />
         <activity
@@ -24,7 +27,7 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".SignInOrLogInActivity"
+            android:name=".Gender"
             android:exported="false" />
         <activity
             android:name=".SignInActivity"
@@ -45,7 +48,7 @@
             android:name=".BirthDate"
             android:exported="false" />
         <activity
-            android:name=".Gender"
+            android:name=".SignInOrLogInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

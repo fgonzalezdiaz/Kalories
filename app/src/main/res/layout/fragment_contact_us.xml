@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,8 +13,8 @@
         android:orientation="vertical"
         android:padding="16dp"
         android:gravity="center"
-        android:layout_gravity="center"
-        >
+        android:layout_gravity="center">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -21,19 +22,18 @@
             android:textSize="18sp"
             android:paddingBottom="20dp"
             android:textColor="@color/primary"
-            android:textStyle="bold"
-            />
-            <com.google.android.material.textfield.TextInputLayout
+            android:textStyle="bold" />
+
+        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textFieldName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/nombre"
             android:paddingBottom="20dp"
-            android:textColorHint="@color/text_secondary"
             app:hintTextColor="@color/primary"
             app:boxBackgroundColor="@color/surface"
             app:boxStrokeColor="@color/primary"
-            >
+            app:placeholderTextColor="@color/text_secondary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -43,7 +43,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Campo para los Apellidos -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textFieldSurnames"
             android:layout_width="match_parent"
@@ -51,11 +50,9 @@
             android:layout_marginTop="8dp"
             android:hint="@string/apellidos"
             android:paddingBottom="20dp"
-            android:textColorHint="@color/text_secondary"
             app:hintTextColor="@color/primary"
             app:boxBackgroundColor="@color/surface"
-            app:boxStrokeColor="@color/primary"
-            >
+            app:boxStrokeColor="@color/primary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -65,7 +62,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Campo para el Email -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textFieldEmail"
             android:layout_width="match_parent"
@@ -73,11 +69,9 @@
             android:layout_marginTop="8dp"
             android:hint="@string/email"
             android:paddingBottom="20dp"
-            android:textColorHint="@color/text_secondary"
             app:hintTextColor="@color/primary"
             app:boxBackgroundColor="@color/surface"
-            app:boxStrokeColor="@color/primary"
-            >
+            app:boxStrokeColor="@color/primary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -87,18 +81,15 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Campo para el Mensaje -->
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textFieldMessage"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:hint="Mensaje"
-            android:textColorHint="@color/text_secondary"
             app:hintTextColor="@color/primary"
             app:boxBackgroundColor="@color/surface"
-            app:boxStrokeColor="@color/primary"
-            >
+            app:boxStrokeColor="@color/primary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -110,7 +101,6 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Botón de Enviar -->
         <Button
             android:id="@+id/buttonSend"
             android:layout_width="wrap_content"
@@ -119,8 +109,7 @@
             android:layout_marginTop="16dp"
             android:text="@string/enviar"
             android:backgroundTint="@color/primary"
-            android:textColor="@color/on_primary"
-            />
+            android:textColor="@color/on_primary" />
 
     </LinearLayout>
 
@@ -130,7 +119,6 @@
         android:layout_height="48dp"
         android:src="@android:drawable/ic_menu_revert"
         android:padding="12dp"
-        app:tint="@color/text_primary"
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:contentDescription="@string/volver_atr_s"
