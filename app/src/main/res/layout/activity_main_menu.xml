@@ -52,6 +52,7 @@
             />
 
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/mbRegistroDiario"
             android:layout_width="match_parent"
             android:layout_height="190dp"
             android:backgroundTint="@color/surface"

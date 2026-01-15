@@ -64,4 +64,13 @@
     <string name="ver_estad_sticas">Ver estadísticas</string>
     <string name="contacto">Contacto</string>
     <string name="idioma">Idioma</string>
+    <string name="_21_12_2025">21-12-2025</string>
+    <string name="_21_2_2025_32kg">21-2-2025 32KG</string>
+    <string name="_24_04_2025_888kg">24-04-2025________________888KG</string>
+    <string name="hecho_por_osama_y_francisco">Hecho por Osama y Francisco</string>
+    <string name="boton_de_busqueda">Boton de busqueda</string>
+    <string name="filtrar">Filtrar</string>
+    <string name="filtrar_por_fecha">Filtrar por fecha</string>
+    <string name="filtrar_por_fecha_o_peso">Filtrar por fecha o peso</string>
+    <string name="introduce_un_nuevo_peso">Introduce un nuevo peso</string>
 </resources>

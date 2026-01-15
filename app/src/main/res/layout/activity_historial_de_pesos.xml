@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".historial_de_pesos">
+    <ImageView
+        android:id="@+id/btnAtras"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@android:drawable/ic_menu_revert"
+        android:padding="10dp"
+        app:tint="@color/text_primary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilFiltre"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintTop_toBottomOf="@id/btnAtras"
+        app:layout_constraintStart_toStartOf="@id/btnAtras"
+        app:layout_constraintEnd_toStartOf="@id/ivFiltre">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etFiltre"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/filtrar_por_fecha_o_peso"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <ImageView
+        android:id="@+id/ivFiltre"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginVertical="20dp"
+        android:contentDescription="@string/boton_de_busqueda"
+        android:src="@drawable/magnifying_glass_1083378"
+        app:layout_constraintTop_toTopOf="@id/tilFiltre"
+        app:layout_constraintBottom_toBottomOf="@id/tilFiltre"
+        app:layout_constraintStart_toEndOf="@id/tilFiltre"
+        android:layout_marginStart="10dp"
+        />
+    <TextView
+        android:id="@+id/tvDateExample"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tilFiltre"
+        app:layout_constraintStart_toStartOf="@id/tilFiltre"
+        android:text="@string/dd_mm_yyyy"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_marginVertical="60dp"
+        android:layout_marginHorizontal="20dp"
+        android:id="@+id/rvPesos"
+        app:layout_constraintTop_toBottomOf="@id/tvDateExample"
+        android:layout_width="match_parent"
+        android:layout_height="400dp"
+        app:layout_constraintBottom_toTopOf="@+id/tilNewPes"
+
+        >
+    </androidx.recyclerview.widget.RecyclerView>
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilNewPes"
+        android:layout_width="225dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginVertical="10dp"
+        app:layout_constraintBottom_toTopOf="@id/btnIntroducir"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etNewPes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/introduce_un_nuevo_peso"
+            android:inputType="text"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+        />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnIntroducir"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/primary"
+        android:textColor="@color/on_primary"
+        android:text="@string/continuar"
+        app:cornerRadius="8dp"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginVertical="20dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

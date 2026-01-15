@@ -21,19 +21,26 @@
 
         >
 
-        <EditText
-            android:id="@+id/etPesoInput"
-            android:layout_width="match_parent"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tilNewPes"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
-            android:background="@color/divider"
-            android:hint="@string/introduce_tu_peso_en_kg"
-            android:inputType="numberDecimal"
-            android:padding="16dp"
-            android:textColor="@color/text_primary"
-            android:textColorHint="@color/text_secondary"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_marginBottom="30dp"/>
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginVertical="20dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etNewPes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/introduce_tu_peso_en_kg"
+                android:textColorHint="@color/white"
+                android:textColor="@color/white"
+                android:inputType="text"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnNuevoPeso"

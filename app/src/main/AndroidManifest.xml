@@ -12,6 +12,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".InitialScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".historial_de_pesos"
+            android:exported="false" />
+        <activity
             android:name=".DailyReports"
             android:exported="false" />
         <activity
@@ -24,7 +36,7 @@
             android:name=".Login"
             android:exported="false" />
         <activity
-            android:name=".SignInOrLogInActivity"
+            android:name=".Gender"
             android:exported="false" />
         <activity
             android:name=".SignInActivity"
@@ -45,14 +57,8 @@
             android:name=".BirthDate"
             android:exported="false" />
         <activity
-            android:name=".Gender"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:name=".SignInOrLogInActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
