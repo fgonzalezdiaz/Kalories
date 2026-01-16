@@ -73,4 +73,7 @@
     <string name="filtrar_por_fecha">Filtrar por fecha</string>
     <string name="filtrar_por_fecha_o_peso">Filtrar por fecha o peso</string>
     <string name="introduce_un_nuevo_peso">Introduce un nuevo peso</string>
+    <string name="seleccionar">seleccionar</string>
+    <string name="selecciona_tu_sexo">Selecciona tu sexo</string>
+    <string name="selecciona">Selecciona</string>
 </resources>

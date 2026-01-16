@@ -117,7 +117,7 @@ class historial_de_pesos : AppCompatActivity() {
         val pesoYFecha = ArrayList<String>()
         if (getFile().exists()) {
             getFile().forEachLine { line ->
-                if(line.contains(filtre)) {
+                if(line.contains(filtre) && !line.isEmpty() && !line.isBlank()) {
                     pesoYFecha.add(line)
                 }
             }
