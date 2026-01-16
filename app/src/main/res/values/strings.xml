@@ -68,4 +68,7 @@
     <string name="_21_2_2025_32kg">21-2-2025 32KG</string>
     <string name="_24_04_2025_888kg">24-04-2025________________888KG</string>
     <string name="hecho_por_osama_y_francisco">Hecho por Osama y Francisco</string>
+    <string name="configuraci_menu_navigation_bar">Configuración</string>
+    <string name="Salir_menu_navigation_bar">salir</string>
+    <string name="Contaco_menu_navigation_bar">Contacto</string>
 </resources>
