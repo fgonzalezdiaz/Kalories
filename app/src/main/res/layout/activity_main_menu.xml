@@ -7,29 +7,20 @@
     android:layout_height="match_parent"
     android:background="@color/background"
     tools:context=".MainMenu">
-    <ImageView
-        android:id="@+id/btnBack"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@android:drawable/ic_menu_revert"
-        android:padding="12dp"
-        app:tint="@color/text_primary"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:contentDescription="@string/volver_atr_s"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnBack"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="30dp"
         android:orientation="vertical"
         android:gravity="center"
+        android:layout_marginBottom="20dp"
         >
         <com.google.android.material.button.MaterialButton
+            android:id="@+id/mbWeightHistory"
             android:layout_width="match_parent"
             android:layout_height="190dp"
             android:backgroundTint="@color/surface"
@@ -66,38 +57,26 @@
             android:layout_marginHorizontal="18dp"
             />
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/configuraci_n"
-            android:backgroundTint="@color/surface"
-            android:textColor="@color/text_primary"
-            app:cornerRadius="8dp"
-            android:textSize="17sp"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="18dp"
-            />
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/cerrar_sessi_n"
-            android:backgroundTint="@color/surface"
-            android:textColor="@color/text_primary"
-            app:cornerRadius="8dp"
-            android:textSize="17sp"
-            android:layout_marginHorizontal="18dp"
-            />
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="@string/contacto"
-            android:backgroundTint="@color/surface"
-            android:textColor="@color/text_primary"
-            app:cornerRadius="8dp"
-            android:textSize="17sp"
-            android:layout_marginHorizontal="18dp"
-            />
+
     </LinearLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_marginVertical="10dp"
+        android:background="@color/surface"
+        app:itemIconTint="@color/secondary"
+        android:id="@+id/bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:menu="@menu/bottom_nav_menu"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+
 
 
 

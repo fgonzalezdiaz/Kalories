@@ -155,16 +155,6 @@
                 android:layout_marginBottom="20dp"
                 />
         </LinearLayout>
-    <ImageView
-        android:id="@+id/btnBack"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:src="@android:drawable/ic_menu_revert"
-        android:padding="12dp"
-        app:tint="@color/text_primary"
-        android:layout_marginTop="16dp"
-        android:layout_marginStart="16dp"
-        android:contentDescription="@string/volver_atr_s"
-        android:layout_gravity="top|start" />
+
 
 </FrameLayout>

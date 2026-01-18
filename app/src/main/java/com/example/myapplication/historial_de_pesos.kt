@@ -12,11 +12,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 import java.io.File
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
-
 
 class historial_de_pesos : AppCompatActivity() {
     lateinit var recycler: RecyclerView
@@ -25,7 +26,7 @@ class historial_de_pesos : AppCompatActivity() {
     lateinit var etNewPes : EditText
     lateinit var btnIntroducir : MaterialButton
     lateinit var btnAtras : ImageView
-
+    lateinit var bottomNavigation: BottomNavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -64,6 +65,7 @@ class historial_de_pesos : AppCompatActivity() {
         etNewPes = findViewById(R.id.etNewPes)
         btnIntroducir = findViewById(R.id.btnIntroducir)
         btnAtras = findViewById(R.id.btnAtras)
+        bottomNavigation = findViewById(R.id.bottom_navigation)
     }
 
     private fun initListeners(){
@@ -84,6 +86,34 @@ class historial_de_pesos : AppCompatActivity() {
             val adapter = CustomAdapter(getItems(text))
             recycler.adapter = adapter
         }
+
+        bottomNavigation.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.home_fragment -> {
+                    startActivity(Intent(this, MainMenu::class.java))
+                    true
+                }
+                R.id.dashboard_fragment -> {
+                    replaceFragment(ContactUs())
+                    true
+                }
+                R.id.settings_fragment -> {
+                    replaceFragment(Configuration())
+                    true
+                }
+                R.id.notifications_fragment -> {
+                    startActivity(Intent(this, SignInOrLogInActivity::class.java))
+                    true
+                }
+                else -> false
+            }
+        }
+    }
+
+    private fun replaceFragment(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
     }
 
     private fun saveData (pes : String){

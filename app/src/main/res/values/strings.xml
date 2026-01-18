@@ -76,4 +76,12 @@
     <string name="seleccionar">seleccionar</string>
     <string name="selecciona_tu_sexo">Selecciona tu sexo</string>
     <string name="selecciona">Selecciona</string>
+    <string name="title_activity_bottom_navigation">bottom_navigation</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="Contaco_menu_navigation_bar" />
+    <string name="Salir_menu_navigation_bar" />
+    <string name="configuraci_menu_navigation_bar" />
+    <string name="ajustes_menu_navigation_bar" />
 </resources>
