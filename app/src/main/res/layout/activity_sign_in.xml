@@ -50,14 +50,13 @@
             android:id="@+id/tvInfo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/introduce_tu_correo_electr_nico_para_registrarte_en_esta_aplicaci_n"
-            android:textAlignment="center"
-            android:textSize="16sp"
+            android:layout_marginLeft="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
+            android:text="@string/introduce_tu_correo_electr_nico_para_registrarte_en_esta_aplicaci_n"
+            android:textAlignment="center"
             android:textColor="@color/text_secondary"
-            />
+            android:textSize="16sp" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilEmail"
@@ -86,6 +85,7 @@
                 android:inputType="textEmailAddress"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
+                android:textColor="@color/white"
                 />
 
 
@@ -118,6 +118,8 @@
                 android:inputType="textPassword"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
+                android:textColor="@color/white"
+
                 />
 
 
@@ -149,6 +151,7 @@
                 android:inputType="textPassword"
                 android:imeOptions="actionNext"
                 android:maxLines="1"
+                android:textColor="@color/white"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 

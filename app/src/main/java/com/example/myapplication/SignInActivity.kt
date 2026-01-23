@@ -17,19 +17,20 @@ import com.google.android.material.textfield.TextInputEditText
 
 
 class SignInControl : ViewModel(){
+    /*
     private val _email = MutableLiveData<String>()
-    val email : LiveData<String> = _email
+    val email : LiveData<String> = _email //
     private val _password = MutableLiveData<String>()
-    val password : LiveData<String> = _email
+    val password : LiveData<String> = _email //
     private val _password2 = MutableLiveData<String>()
-    val password2 : LiveData<String> = _password2
-
+    val password2 : LiveData<String> = _password2 //
+    */
     fun checkData(email: String, password: String, password2: String) : String{
         if(!checkEmail(email)){
             return "Formato de email incorrecto"
         }
         if(!checkPassword(password)){
-            return "La contraseña debe tener al menos 8 caracteres"
+            return "La contraseña debe tener al menos 8 caracteres y un caracter especial (, . - _) "
         }
         if(!checkPassword(password, password2)){
             return "Las contraseñas no coinciden"
@@ -90,9 +91,9 @@ class SignInActivity : AppCompatActivity() {
         }
         mbRegister.setOnClickListener{
             val checkedData = viewModel.checkData(tietEmail.text.toString(), tietPassword.text.toString(), tietPassword2.text.toString())
-            //tvInfo muestra el mensaje de checkedData para no crear otro TV
             if(checkedData != ""){
                 tvInfo.text = checkedData
+                tvInfo.setTextColor(getColor(R.color.error))
             } else {
                 val intent = Intent(this, Gender::class.java)
                 startActivity(intent)
