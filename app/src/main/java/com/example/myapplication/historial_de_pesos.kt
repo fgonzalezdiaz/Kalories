@@ -49,14 +49,6 @@ class historial_de_pesos : AppCompatActivity() {
 
         initComponents()
         initListeners()
-
-        recycler  = findViewById(R.id.rvPesos)
-        val layoutManager = LinearLayoutManager(this)
-        val adapter = CustomAdapter(getItems())
-
-
-        recycler.adapter = adapter
-        recycler.layoutManager = layoutManager
     }
 
     private fun initComponents(){
@@ -66,6 +58,20 @@ class historial_de_pesos : AppCompatActivity() {
         btnIntroducir = findViewById(R.id.btnIntroducir)
         btnAtras = findViewById(R.id.btnAtras)
         bottomNavigation = findViewById(R.id.bottom_navigation)
+        // --------------------------------------- //
+
+        // Inicializamos el recycler view donde Recycler = al layout de recycler
+        recycler  = findViewById(R.id.rvPesos)
+
+        // Inicializamos el adapter donde CustomAdapter(getItems())
+        // devuelve un array de Strings con los datos del archivo data.txt
+        recycler.adapter = CustomAdapter(getItems())
+
+        // LinearLayoutManager(this) define que la lista se muestre de forma vertical
+        // (uno debajo del otro). Le pasas this (la Activity) porque el gestor necesita acceso
+        // a los recursos de la pantalla, como dimensiones y densidad, para saber cómo dibujar
+        // y calcular el tamaño de los elementos correctamente.
+        recycler.layoutManager = LinearLayoutManager(this)
     }
 
     private fun initListeners(){
@@ -73,16 +79,31 @@ class historial_de_pesos : AppCompatActivity() {
             intent = Intent(this, MainMenu::class.java)
             startActivity(intent)
         }
+
+        // Boton para introducir nuevo peso y actualizar la vista añadiendo otro
+        // elemento de recycler view.
         btnIntroducir.setOnClickListener {
+            // Obtenemos el texto de EditText
             val text = etNewPes.text.toString()
+
             if(!text.isEmpty() || !text.isBlank()){
+                // Accedemos a la funcion saveData(text) para guardar el nuevo peso
+                // y fecha en el archivo data.txt
                 saveData(text)
             }
         }
 
+        // Boton para filtrar la lista de pesos y fechas.
         ivFiltre.setOnClickListener {
+            // Obtenemos el texto de EditText
             val text = etFiltre.text.toString()
+
+            // Devolvemos la misma lista sin modificar en caso que la entrada
+            // del filtro este vacia.
             if(text.isEmpty() || text.isBlank()) getItems()
+
+            // En caso de recibir una entrada valida la actualizamos
+            // la vista con CustomAdapter(getItems(text))
             val adapter = CustomAdapter(getItems(text))
             recycler.adapter = adapter
         }
@@ -126,35 +147,56 @@ class historial_de_pesos : AppCompatActivity() {
         val data = "\n" + fecha + "________________" + pes + "KG"
         
         try {
-            // Get file te devuelve el archivo de la carpeta de almacenamiento interno de la app mientras se ejecuta
-            // ya que en assets no me deja modificarla en ejecucion, solo leerla.
             // Try catch por si el archivo no existe
+            // Obtenemos el archivo data.txt y lo guardamos en una variable
             getFile().appendText(data)
             // Actualizar la lista despues de guardar
+            // La actualizamos con CustomAdapter(getItems()) que getItems()
+            // devuelve un array de Strings con los datos del archivo data.txt
+            // y se lo pasa por parametro al CustomAdapter que se encarga
+            // de mostrar los datos en el recycler
             val adapter = CustomAdapter(getItems())
             recycler.adapter = adapter
+
+            // Limpiamos la entrada de texto
             etNewPes.text.clear()
         } catch (e: Exception) {
             e.printStackTrace()
         }
     }
 
+    // Get file te devuelve el archivo de la carpeta de almacenamiento
+    // interno de la app mientras se ejecuta ya que en assets no me
+    // deja modificarla en ejecucion, solo leerla.
     private fun getFile(): File {
         return File(filesDir, "data.txt")
     }
 
+
+    // getItems(String) a diferencia de getItems() retorna una llista de objectes
+    // pero nomes si la linia conte el filtre:String dins.
     private fun getItems(filtre : String): Array<String> {
+        //Inicialitzem un ArrayList
         val pesoYFecha = ArrayList<String>()
+
+        //Comprovem que l'arxiu existeix.
         if (getFile().exists()) {
+            //Per cada linia de l'arxiu feim una cerca amb el .contains,
+            // y si la linia conte el text de filtre, s'afegira dintre el
+            // ArrayList<String>()
             getFile().forEachLine { line ->
                 if(line.contains(filtre) && !line.isEmpty() && !line.isBlank()) {
                     pesoYFecha.add(line)
                 }
             }
         }
+
+        // Tornam un Array, ja que recordem que el customAdapter rep un array no
+        // un array list.
         return pesoYFecha.toTypedArray()
     }
 
+    // Retorna una llista amb tot els elements de dades.txt.
     private fun getItems(): Array<String> {
         val pesoYFecha = ArrayList<String>()
         if (getFile().exists()) {
@@ -166,4 +208,6 @@ class historial_de_pesos : AppCompatActivity() {
     }
 }
 
+// Peso(data class) esta puesto porque en la teoria sale pero nunca lo utilizamos.
+// Preguntar a david
 data class Peso(val fecha: String, val peso: String)

@@ -22,7 +22,7 @@ class Gender : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.gender)
-        val adapter = ArrayAdapter(this, R.layout.list_item, opciones)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, opciones)
         val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.tvSexSelector)
         autoCompleteTextView.setAdapter(adapter)
         initComponents()
