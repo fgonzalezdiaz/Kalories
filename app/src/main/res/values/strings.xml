@@ -2,6 +2,8 @@
     <string name="app_name">My Application</string>
     <string name="continuar">Continuar</string>
     <string name="sexo">Sexo</string>
+
+    <!-- Deberíamos separarlos por comentarios y ubicación o activitys o xml-->
     <string name="fecha_de_nacimiento">Fecha de nacimiento</string>
     <string name="dd_mm_yyyy">DD/MM/YYYY</string>
     <string name="_24_04_2005">24/04/2005</string>

@@ -8,7 +8,7 @@
     <!-- Primary -->
     <color name="primary">#00E0D6</color>
     <color name="primary_variant">#00C7BE</color>
-    <color name="on_primary">#000000</color>
+    <color name="on_primary">#181818</color>
 
     <!-- Secondary -->
     <color name="secondary">#64D2FF</color>
