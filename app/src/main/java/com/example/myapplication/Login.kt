@@ -26,8 +26,9 @@ class LoginControl : ViewModel(){
 
         if (usuari.length <8){
             return false
-        } else
+        } else {
             return true
+        }
     }
     fun emailLoginChek (email : String): Boolean {
         return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()

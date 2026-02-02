@@ -71,7 +71,7 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         />
-    <FrameLayout
+    <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

@@ -47,7 +47,7 @@
             android:paddingStart="15dp"
             android:hint="@string/contrase_a"
             android:textSize="15sp"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:textColor="@color/text_primary"
             android:textColorHint="@color/text_secondary"
             android:layout_marginBottom="20dp"

@@ -10,10 +10,10 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 
 class BirthDate : AppCompatActivity() {
-    private lateinit var btnContinuar : MaterialButton
-    private lateinit var btnBack : ImageView
-    private lateinit var ibCalendar : ImageButton
-    private lateinit var etFechaNacimiento : EditText
+    private lateinit var btnContinuar: MaterialButton
+    private lateinit var btnBack: ImageView
+    private lateinit var ibCalendar: ImageButton
+    private lateinit var etFechaNacimiento: EditText
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,14 +23,14 @@ class BirthDate : AppCompatActivity() {
         initListeners()
         initResultListener()
     }
-    private fun initComponents(){
+    private fun initComponents() {
         btnContinuar = findViewById(R.id.btnContinuar)
         btnBack = findViewById(R.id.btnBack)
         ibCalendar = findViewById(R.id.ibCalendar)
         etFechaNacimiento = findViewById(R.id.etFechaNacimiento)
     }
 
-    private fun initListeners(){
+    private fun initListeners() {
         btnContinuar.setOnClickListener {
             val intent = Intent(this, HeightAndWeight::class.java)
             startActivity(intent)
