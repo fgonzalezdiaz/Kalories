@@ -104,7 +104,6 @@ class SignInActivity : AppCompatActivity() {
             val intent = Intent(this, Gender::class.java)
             startActivity(intent)
         }
-
         // Botón de cancelación y vuelta atras
         builder.setNegativeButton("Cancelar") { dialog, which ->
             dialog.dismiss() // Cierra el diálogo

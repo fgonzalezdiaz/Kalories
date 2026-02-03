@@ -43,6 +43,21 @@ class CustomAdapter(private val dataSet: Array<Peso>) :
         val item = dataSet[position]
         val textDisplay = "${item.fecha}________________${item.peso}"
         viewHolder.pesoYFechaLabel.text = textDisplay
+
+        // En caso de presionar algun elemento saldra un dialog con info
+        // En SignIn activity ya esta explicado el Dialog
+        // Este es mas sencillo, pues solo se muesta y se cierra en presionar
+        // el boton cerrar.
+        viewHolder.itemView.setOnClickListener{
+            val contexto = viewHolder.itemView.context
+            val builder = android.app.AlertDialog.Builder(contexto)
+            builder.setTitle("Informacion del registro")
+            builder.setMessage("Fecha registrada: ${item.fecha} con peso ${item.peso}")
+            builder.setPositiveButton("Cerrar"){ dialog, _ ->
+                dialog.dismiss()
+            }
+            builder.create().show()
+        }
     }
 
     // Devuelve el tamaño del dataset (invocado por el layout manager)
