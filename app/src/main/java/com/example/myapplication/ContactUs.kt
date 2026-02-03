@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.myapplication.databinding.FragmentContactUsBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,20 +22,33 @@ class ContactUs : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    // Inicializas el _binding con el nombre del Layout en este caso
+    // fragment_contact_us = FragmentContactUsBinding
+    private var _binding: FragmentContactUsBinding? = null
+
+    // 2. Una propietat de només lectura per no haver d'usar "!!" a tot arreu
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contact_us, container, false)
+        // (Sin viewBinding) return inflater.inflate(R.layout.fragment_contact_us, container, false)
+        _binding = FragmentContactUsBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView(){
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {

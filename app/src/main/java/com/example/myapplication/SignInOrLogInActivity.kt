@@ -2,40 +2,40 @@ package com.example.myapplication
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ImageButton
-import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.google.android.material.button.MaterialButton
+import com.example.myapplication.databinding.ActivitySignInOrLogInBinding
 
 class SignInOrLogInActivity : AppCompatActivity() {
-    private lateinit var loginButton : MaterialButton
-    private lateinit var registerButton : MaterialButton
+
+    // Iniciamos el Binding para poder asi utilizar las variables de dentro del activity
+    // como en este caso el boton Login y Registrarse, sin necesidad del FindViewById()
+    private lateinit var binding: ActivitySignInOrLogInBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        // Inicializacion del Binding
+        binding = ActivitySignInOrLogInBinding.inflate(layoutInflater)
+        // Seleccionamos el activity raiz para que sepa que tiene que ser
+        // este activity el que usa.
+        setContentView(binding.root)
+
         enableEdgeToEdge()
-        setContentView(R.layout.activity_sign_in_or_log_in)
         initComponents()
         initListeners()
     }
-    private fun initComponents(){
-        loginButton = findViewById(R.id.mbLogin)
-        registerButton = findViewById(R.id.mbRegister)
+    private fun initComponents() {}
 
-    }
+    private fun initListeners() {
 
-    private fun initListeners(){
-        loginButton.setOnClickListener {
+        // Ejemplo de uso para un click listener
+        binding.mbLogin.setOnClickListener {
             val intent = Intent(this, Login::class.java)
             startActivity(intent)
         }
-        registerButton.setOnClickListener {
+        binding.mbRegister.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
             startActivity(intent)
         }
-
     }
 }

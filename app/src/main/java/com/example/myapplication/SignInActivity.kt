@@ -1,11 +1,14 @@
 package com.example.myapplication
 
+import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -13,6 +16,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 
 
@@ -62,6 +66,11 @@ class SignInActivity : AppCompatActivity() {
     private lateinit var tvInfo : TextView
     private val viewModel : SignInControl by viewModels()
 
+    //Declaramos el builder y el Dialog como una Lateinit
+    private lateinit var builder : AlertDialog.Builder
+    private lateinit var dialog : Dialog
+
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -82,6 +91,27 @@ class SignInActivity : AppCompatActivity() {
         tietPassword = findViewById(R.id.tietPassword)
         tietPassword2 = findViewById(R.id.tietPassword2)
         tvInfo = findViewById(R.id.tvInfo)
+
+        // INICIALIZAMOS EL CONSTRUCTOR YA DECLARADO
+        builder = AlertDialog.Builder(this)
+        builder.setTitle("RECUERDA TU CONTRASEÑA")
+        builder.setMessage("¿Estás seguro de que quieres continuar?")
+
+        // Botón de confirmación
+        builder.setPositiveButton("Sí") { dialog, which ->
+            // Toast para mostrar mensaje de confirmacion y a continuacion logica de codigo
+            Toast.makeText(this, "Continuamos", Toast.LENGTH_SHORT).show()
+            val intent = Intent(this, Gender::class.java)
+            startActivity(intent)
+        }
+
+        // Botón de cancelación y vuelta atras
+        builder.setNegativeButton("Cancelar") { dialog, which ->
+            dialog.dismiss() // Cierra el diálogo
+        }
+        // Creamos el dialog una vez creado el builder
+        dialog = builder.create()
+
     }
 
     private fun initListeners(){
@@ -95,8 +125,8 @@ class SignInActivity : AppCompatActivity() {
                 tvInfo.text = checkedData
                 tvInfo.setTextColor(getColor(R.color.error))
             } else {
-                val intent = Intent(this, Gender::class.java)
-                startActivity(intent)
+                // MOSTRAMOS EL DIALOG
+                dialog.show()
             }
         }
     }
