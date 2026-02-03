@@ -72,4 +72,11 @@ class MainMenu : AppCompatActivity() {
             .replace(R.id.fragment_container, fragment)
             .commit()
     }
+    /*
+    Dentro de Fragment, en el onViewCreated
+        binding.btnCerrar.setOnClickListener {
+    Esto simula que el usuario presionó el botón "Atrás" del móvil
+            parentFragmentManager.popBackStack()
+        }
+    */
 }
