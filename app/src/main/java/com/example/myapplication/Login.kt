@@ -1,15 +1,18 @@
 package com.example.myapplication
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,21 +20,39 @@ import androidx.lifecycle.ViewModelProvider
 
 
 class LoginControl : ViewModel(){
-    private val _usuari = MutableLiveData(String())
-    val usuari : LiveData<String> = _usuari
+    private val _email = MutableLiveData(String())
+    val email : LiveData<String> = _email
     private val _contrasena = MutableLiveData(String())
     val contrasena : LiveData<String> = _contrasena
 
-    fun usuariLoginChek (usuari: String): Boolean{
+    private val _errorEmail = MutableLiveData<String?>()
+    val errorEmail: LiveData<String?> = _errorEmail
+    private val _errorPassword = MutableLiveData<String?>()
+    val errorPassword: LiveData<String?> = _errorPassword
 
-        if (usuari.length <8){
-            return false
+    fun actualitzaEmail(email:String){
+        _email.value = email
+        emailLoginCheck(email)
+    }
+
+    fun actualitzaPassword(password : String){
+        _contrasena.value = password
+        passwordCheck(password)
+    }
+
+    fun passwordCheck(password : String){
+        if (password.length < 8){
+            _errorPassword.value = "Format contrasenya incorrecte"
         } else {
-            return true
+            _errorPassword.value = null
         }
     }
-    fun emailLoginChek (email : String): Boolean {
-        return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    fun emailLoginCheck (email : String){
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            _errorEmail.value = "Format email incorrecte"
+        } else {
+            _errorEmail.value = null
+        }
     }
 }
 
@@ -40,6 +61,7 @@ class Login : AppCompatActivity() {
     private lateinit var btnBack : ImageView
     private lateinit var emailLoginBox : EditText
     private lateinit var passwordLoginBox : EditText
+    private lateinit var tvBenvingut : TextView
     private val viewModel : LoginControl by viewModels()
     private lateinit var loginControl: LoginControl
 
@@ -57,7 +79,7 @@ class Login : AppCompatActivity() {
         btLogIn = findViewById(R.id.btLogIn)
         emailLoginBox = findViewById(R.id.etEmail)
         passwordLoginBox = findViewById(R.id.etContraseña)
-
+        tvBenvingut = findViewById(R.id.tvBenvingut)
 
     }
 
@@ -67,27 +89,27 @@ class Login : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btLogIn.setOnClickListener {
-
-            val email = emailLoginBox.text.toString()
-            val password = passwordLoginBox.text.toString()
-
-            val emailOk = viewModel.emailLoginChek(email)
-            val passwordOk = viewModel.usuariLoginChek(password)
-
-
-            if (emailOk && passwordOk) {
-                val intent = Intent(this, MainMenu::class.java)
-                startActivity(intent)
-            } else {
-
-                if (!emailOk) {
-                    emailLoginBox.error = "Email incorrecto"
-                }
-                if (!passwordOk) {
-                    passwordLoginBox.error = "La contraseña no tiene 8 caracteres"
-                }
-            }
+        emailLoginBox.doOnTextChanged { text, _, _ , _ ->
+            viewModel.actualitzaEmail(text.toString())
         }
+        passwordLoginBox.doOnTextChanged { text, _, _ , _ ->
+            viewModel.actualitzaPassword(text.toString())
+        }
+
+        viewModel.errorEmail.observe(this){error ->
+            tvBenvingut.text = error
+            tvBenvingut.setTextColor(Color.RED)
+        }
+
+        viewModel.errorPassword.observe(this){error ->
+            tvBenvingut.text = error
+            tvBenvingut.setTextColor(Color.RED)
+        }
+
+        btLogIn.setOnClickListener {
+            val intent = Intent(this, MainMenu::class.java)
+            startActivity(intent)
+        }
+
     }
 }

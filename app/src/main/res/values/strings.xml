@@ -86,4 +86,5 @@
     <string name="Salir_menu_navigation_bar" />
     <string name="configuraci_menu_navigation_bar" />
     <string name="ajustes_menu_navigation_bar" />
+    <string name="bienvenido">Bienvenido</string>
 </resources>
