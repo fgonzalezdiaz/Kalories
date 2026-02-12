@@ -138,8 +138,7 @@ class SignInActivity : AppCompatActivity() {
         }
         mbRegister.setOnClickListener { dialog.show() }
 
-        tietEmail.doOnTextChanged { text, _, _, _ ->
-            viewModel.actualizaEmail(text.toString()) }
+        tietEmail.doOnTextChanged { text, _, _, _ -> viewModel.actualizaEmail(text.toString()) }
         tietPassword.doOnTextChanged { text, _, _, _ ->
             viewModel.actualizaPassword(text.toString())
         }
