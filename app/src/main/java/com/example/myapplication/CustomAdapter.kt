@@ -5,14 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.model.HistorialPeso
 
 // Define la clase CustomAdapter que hereda de RecyclerView.Adapter.
 // Recibe dataSet (un array de Strings) como parámetro principal.
 // Define la clase CustomAdapter que hereda de RecyclerView.Adapter.
 // Recibe dataSet (un array de Pesos) como parámetro principal.
-class CustomAdapter(private val dataSet: Array<Peso>) :
-        RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(private var dataSet: List<HistorialPeso> = emptyList()) :
+    RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
+    fun actualizarDatos(nuevaLista: List<HistorialPeso>){
+        this.dataSet = nuevaLista
+        notifyDataSetChanged()
+    }
     // Codigo base cogido de https://developer.android.com/guide/topics/ui/layout/recyclerview
 
     // Define la clase interna ViewHolder, que representa cada elemento visual.
