@@ -1,12 +1,12 @@
 package com.example.myapplication
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.itemapi.HistorialPesoAPI
 import com.example.myapplication.model.HistorialPeso
-import com.example.myapplication.service.HistorialPesoService
 import kotlinx.coroutines.launch
 
 class HistorialViewModel : ViewModel() {
@@ -14,12 +14,14 @@ class HistorialViewModel : ViewModel() {
     private val _listaHistorial = MutableLiveData<List<HistorialPeso>>()
     val listaHistorial: LiveData<List<HistorialPeso>> = _listaHistorial
 
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage: LiveData<String?> = _errorMessage
+
     // Guardamos una copia de la lista completa para poder filtrar sin volver a llamar a la API
     private var listaCompletaCache: List<HistorialPeso> = emptyList()
 
-    private val apiService = HistorialPesoAPI
+    private val apiService = HistorialPesoAPI.API()
 
-    // ERRORRRRRRRRRRRRRRR
     fun obtenerHistorial() {
         viewModelScope.launch {
             try {
@@ -28,9 +30,16 @@ class HistorialViewModel : ViewModel() {
                     val lista = response.body() ?: emptyList()
                     listaCompletaCache = lista
                     _listaHistorial.value = lista
+                    _errorMessage.value = null
+                } else {
+                    val errorMsg = "Error al obtener historial: ${response.code()}"
+                    Log.e("HistorialViewModel", errorMsg)
+                    _errorMessage.value = errorMsg
                 }
             } catch (e: Exception) {
-                // Manejar error
+                val errorMsg = "Error de red: ${e.message}"
+                Log.e("HistorialViewModel", errorMsg, e)
+                _errorMessage.value = errorMsg
             }
         }
     }
@@ -39,13 +48,23 @@ class HistorialViewModel : ViewModel() {
     fun crearNuevoPeso(fecha: String, peso: Int, idUser: Long) {
         viewModelScope.launch {
             try {
+                Log.d("HistorialViewModel", "Enviando peso: fecha=$fecha, peso=$peso, idUser=$idUser")
                 val response = apiService.create(fecha, peso, idUser)
                 if (response.isSuccessful) {
+                    Log.d("HistorialViewModel", "Peso creado con éxito")
+                    _errorMessage.value = "Peso guardado correctamente"
                     // Si se creó con éxito, volvemos a pedir la lista actualizada al servidor
                     obtenerHistorial()
+                } else {
+                    val errorBody = response.errorBody()?.string() ?: "Sin cuerpo de error"
+                    val errorMsg = "Error al guardar (Código ${response.code()}): $errorBody"
+                    Log.e("HistorialViewModel", errorMsg)
+                    _errorMessage.value = errorMsg
                 }
             } catch (e: Exception) {
-                // Manejar error
+                val errorMsg = "Error al conectar con Oracle: ${e.message}"
+                Log.e("HistorialViewModel", errorMsg, e)
+                _errorMessage.value = errorMsg
             }
         }
     }

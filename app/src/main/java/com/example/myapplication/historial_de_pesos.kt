@@ -59,6 +59,12 @@ class historial_de_pesos : AppCompatActivity() {
         viewModel.listaHistorial.observe(this) { lista ->
             adapter.actualizarDatos(lista)
         }
+
+        viewModel.errorMessage.observe(this) { message ->
+            message?.let {
+                android.widget.Toast.makeText(this, it, android.widget.Toast.LENGTH_LONG).show()
+            }
+        }
     }
 
     @SuppressLint("DefaultLocale")
@@ -75,20 +81,22 @@ class historial_de_pesos : AppCompatActivity() {
             val text = etNewPes.text.toString()
 
             if (text.isNotBlank()) {
-                // Generamos la fecha con tu misma lógica
+                // Generamos la fecha con el formato que requiere tu API: yyyy-MM-dd'T'HH:mm:ss
+                // O el formato que use el service de Retrofit. 
+                // Segun HistorialPesoAPI usa "yyyy-MM-dd'T'HH:mm:ss"
                 val cal = Calendar.getInstance()
                 val fecha = String.format(
-                    "%02d-%02d-%04d",
-                    cal.get(Calendar.DAY_OF_MONTH),
+                    "%04d-%02d-%02d",
+                    cal.get(Calendar.YEAR),
                     cal.get(Calendar.MONTH) + 1,
-                    cal.get(Calendar.YEAR)
+                    cal.get(Calendar.DAY_OF_MONTH)
                 )
 
-                // Convertimos el texto a número (asumiendo que es un entero)
+                // Convertimos el texto a número
                 val pesoInt = text.toIntOrNull() ?: 0
-                val idUsuarioTemporal = 1L // Asignamos un ID de usuario fijo por ahora
+                val idUsuarioTemporal = 1L // El backend autogenera IDs, pero el service pide un Long
 
-                // Le pedimos al ViewModel que lo guarde en la BBDD (Java)
+                // Enviamos los datos al ViewModel para que los guarde en la BBDD
                 viewModel.crearNuevoPeso(fecha, pesoInt, idUsuarioTemporal)
 
                 etNewPes.text.clear()

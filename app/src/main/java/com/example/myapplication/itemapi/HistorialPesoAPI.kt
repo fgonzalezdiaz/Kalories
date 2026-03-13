@@ -3,8 +3,11 @@ package com.example.myapplication.itemapi
 import com.example.myapplication.service.HistorialPesoService
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
+import okhttp3.ResponseBody
+import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.lang.reflect.Type
 import java.security.cert.X509Certificate
 import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
@@ -25,6 +28,7 @@ class HistorialPesoAPI {
                 mItemAPI = Retrofit.Builder()
                     .baseUrl("http://158.101.112.242:8080/")
                     .client(getUnsafeOkHttpClient()) // 🚨 ¡ESTO ES LO QUE TE FALTABA! 🚨
+                    .addConverterFactory(NullOnEmptyConverterFactory())
                     .addConverterFactory(GsonConverterFactory.create(gsondateformat))
                     .build()
                     .create(HistorialPesoService::class.java)
@@ -53,6 +57,24 @@ class HistorialPesoAPI {
 
             } catch (e: Exception) {
                 throw RuntimeException(e)
+            }
+        }
+
+        /**
+         * Converter factory that handles empty response bodies (0 bytes) by returning null
+         * instead of throwing an EOFException in the Gson converter.
+         */
+        class NullOnEmptyConverterFactory : Converter.Factory() {
+            override fun responseBodyConverter(
+                type: Type,
+                annotations: Array<Annotation>,
+                retrofit: Retrofit
+            ): Converter<ResponseBody, *> {
+                val delegate: Converter<ResponseBody, *> =
+                    retrofit.nextResponseBodyConverter<Any>(this, type, annotations)
+                return Converter { body ->
+                    if (body.contentLength() == 0L) null else delegate.convert(body)
+                }
             }
         }
     }
