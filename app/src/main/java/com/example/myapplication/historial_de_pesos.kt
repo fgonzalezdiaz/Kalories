@@ -50,7 +50,9 @@ class historial_de_pesos : AppCompatActivity() {
         recycler = findViewById(R.id.rvPesos)
         // - --------------------- - //
 
-        adapter = CustomAdapter()
+        adapter = CustomAdapter(emptyList()) { item ->
+            mostrarOpcionesPeso(item)
+        }
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(this)
     }
@@ -141,6 +143,58 @@ class historial_de_pesos : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.fragment_container, fragment)
             .commit()
+    }
+
+    private fun mostrarOpcionesPeso(item: com.example.myapplication.model.HistorialPeso) {
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        builder.setTitle("Opciones del registro")
+        builder.setMessage("¿Qué desea hacer con el registro de ${item.fecha} (${item.peso}kg)?")
+        
+        builder.setPositiveButton("Modificar") { _, _ ->
+            mostrarDialogoModificar(item)
+        }
+        builder.setNegativeButton("Eliminar") { _, _ ->
+            confirmarEliminar(item)
+        }
+        builder.setNeutralButton("Cancelar") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
+    }
+
+    private fun mostrarDialogoModificar(item: com.example.myapplication.model.HistorialPeso) {
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        builder.setTitle("Modificar peso")
+        
+        val input = EditText(this)
+        input.inputType = android.text.InputType.TYPE_CLASS_NUMBER
+        input.setText(item.peso.toString())
+        builder.setView(input)
+
+        builder.setPositiveButton("Guardar") { _, _ ->
+            val nuevoPeso = input.text.toString().toIntOrNull()
+            if (nuevoPeso != null) {
+                viewModel.modificarPeso(item.id, item.fecha, nuevoPeso)
+            }
+        }
+        builder.setNegativeButton("Cancelar") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
+    }
+
+    private fun confirmarEliminar(item: com.example.myapplication.model.HistorialPeso) {
+        val builder = androidx.appcompat.app.AlertDialog.Builder(this)
+        builder.setTitle("Confirmar eliminación")
+        builder.setMessage("¿Estás seguro de que quieres eliminar este registro?")
+        
+        builder.setPositiveButton("Eliminar") { _, _ ->
+            viewModel.eliminarPeso(item)
+        }
+        builder.setNegativeButton("Cancelar") { dialog, _ ->
+            dialog.dismiss()
+        }
+        builder.show()
     }
 }
 

@@ -27,7 +27,7 @@ class HistorialPesoAPI {
 
                 mItemAPI = Retrofit.Builder()
                     .baseUrl("http://158.101.112.242:8080/")
-                    .client(getUnsafeOkHttpClient()) // 🚨 ¡ESTO ES LO QUE TE FALTABA! 🚨
+                    .client(getUnsafeOkHttpClient()) 
                     .addConverterFactory(NullOnEmptyConverterFactory())
                     .addConverterFactory(GsonConverterFactory.create(gsondateformat))
                     .build()

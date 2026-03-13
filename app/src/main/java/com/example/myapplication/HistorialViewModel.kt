@@ -69,6 +69,54 @@ class HistorialViewModel : ViewModel() {
         }
     }
 
+    // Llama al PUT de Retrofit para modificar un peso existente
+    fun modificarPeso(id: Long, fecha: String, peso: Int) {
+        viewModelScope.launch {
+            try {
+                Log.d("HistorialViewModel", "Modificando peso: id=$id, fecha=$fecha, peso=$peso")
+                val response = apiService.update(id, fecha, peso)
+                if (response.isSuccessful) {
+                    Log.d("HistorialViewModel", "Peso modificado con éxito")
+                    _errorMessage.value = "Peso modificado correctamente"
+                    obtenerHistorial()
+                } else {
+                    val errorBody = response.errorBody()?.string() ?: "Sin cuerpo de error"
+                    val errorMsg = "Error al modificar (Código ${response.code()}): $errorBody"
+                    Log.e("HistorialViewModel", errorMsg)
+                    _errorMessage.value = errorMsg
+                }
+            } catch (e: Exception) {
+                val errorMsg = "Error al modificar peso: ${e.message}"
+                Log.e("HistorialViewModel", errorMsg, e)
+                _errorMessage.value = errorMsg
+            }
+        }
+    }
+
+    // Llama al DELETE de Retrofit para eliminar un peso
+    fun eliminarPeso(historialPeso: HistorialPeso) {
+        viewModelScope.launch {
+            try {
+                Log.d("HistorialViewModel", "Eliminando peso: id=${historialPeso.id}")
+                val response = apiService.delete(historialPeso)
+                if (response.isSuccessful) {
+                    Log.d("HistorialViewModel", "Peso eliminado con éxito")
+                    _errorMessage.value = "Peso eliminado correctamente"
+                    obtenerHistorial()
+                } else {
+                    val errorBody = response.errorBody()?.string() ?: "Sin cuerpo de error"
+                    val errorMsg = "Error al eliminar (Código ${response.code()}): $errorBody"
+                    Log.e("HistorialViewModel", errorMsg)
+                    _errorMessage.value = errorMsg
+                }
+            } catch (e: Exception) {
+                val errorMsg = "Error al eliminar peso: ${e.message}"
+                Log.e("HistorialViewModel", errorMsg, e)
+                _errorMessage.value = errorMsg
+            }
+        }
+    }
+
     // Replica exactamente la lógica de tu filtro original pero sobre los objetos de la BD
     fun filtrarLista(filtro: String) {
         if (filtro.isBlank()) {

@@ -11,8 +11,10 @@ import com.example.myapplication.model.HistorialPeso
 // Recibe dataSet (un array de Strings) como parámetro principal.
 // Define la clase CustomAdapter que hereda de RecyclerView.Adapter.
 // Recibe dataSet (un array de Pesos) como parámetro principal.
-class CustomAdapter(private var dataSet: List<HistorialPeso> = emptyList()) :
-    RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
+class CustomAdapter(
+    private var dataSet: List<HistorialPeso> = emptyList(),
+    private val onItemClick: (HistorialPeso) -> Unit
+) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
     fun actualizarDatos(nuevaLista: List<HistorialPeso>){
         this.dataSet = nuevaLista
@@ -49,19 +51,9 @@ class CustomAdapter(private var dataSet: List<HistorialPeso> = emptyList()) :
         val textDisplay = "${item.fecha}________________${item.peso}"
         viewHolder.pesoYFechaLabel.text = textDisplay
 
-        // En caso de presionar algun elemento saldra un dialog con info
-        // En SignIn activity ya esta explicado el Dialog
-        // Este es mas sencillo, pues solo se muesta y se cierra en presionar
-        // el boton cerrar.
+        // En caso de presionar algun elemento se llama al listener pasado por el Activity
         viewHolder.itemView.setOnClickListener{
-            val contexto = viewHolder.itemView.context
-            val builder = android.app.AlertDialog.Builder(contexto)
-            builder.setTitle("Informacion del registro")
-            builder.setMessage("Fecha registrada: ${item.fecha} con peso ${item.peso}")
-            builder.setPositiveButton("Cerrar"){ dialog, _ ->
-                dialog.dismiss()
-            }
-            builder.create().show()
+            onItemClick(item)
         }
     }
 
