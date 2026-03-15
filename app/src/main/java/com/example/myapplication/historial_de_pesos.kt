@@ -96,10 +96,10 @@ class historial_de_pesos : AppCompatActivity() {
 
                 // Convertimos el texto a número
                 val pesoInt = text.toIntOrNull() ?: 0
-                val idUsuarioTemporal = 1L // El backend autogenera IDs, pero el service pide un Long
 
                 // Enviamos los datos al ViewModel para que los guarde en la BBDD
-                viewModel.crearNuevoPeso(fecha, pesoInt, idUsuarioTemporal)
+                // Usamos el ID del usuario logueado en la sesión
+                viewModel.crearNuevoPeso(fecha, pesoInt, UserSession.userId)
 
                 etNewPes.text.clear()
             }

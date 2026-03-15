@@ -25,7 +25,7 @@ class SignInControl : ViewModel() {
     private val _email = MutableLiveData<String>()
     val email: LiveData<String> = _email //
     private val _password = MutableLiveData<String>()
-    val password: LiveData<String> = _email //
+    val password: LiveData<String> = _password //
     private val _password2 = MutableLiveData<String>()
     val password2: LiveData<String> = _password2 //
     private val _errorEmail = MutableLiveData<String?>()
@@ -119,6 +119,9 @@ class SignInActivity : AppCompatActivity() {
         // Botón de confirmación
         builder.setPositiveButton("Sí") { dialog, which ->
             // Toast para mostrar mensaje de confirmacion y a continuacion logica de codigo
+            RegistrationData.email = tietEmail.text.toString()
+            RegistrationData.contrasena = tietPassword.text.toString()
+            
             Toast.makeText(this, "Continuamos", Toast.LENGTH_SHORT).show()
             val intent = Intent(this, Gender::class.java)
             startActivity(intent)
@@ -136,7 +139,20 @@ class SignInActivity : AppCompatActivity() {
             val intent = Intent(this, SignInOrLogInActivity::class.java)
             startActivity(intent)
         }
-        mbRegister.setOnClickListener { dialog.show() }
+        mbRegister.setOnClickListener {
+            // Validar antes de mostrar el diálogo
+            viewModel.checkEmail()
+            viewModel.checkPassword()
+            viewModel.checkPassword2()
+
+            if (viewModel.errorEmail.value == null &&
+                viewModel.errorPassword.value == null &&
+                viewModel.errorPassword2.value == null) {
+                dialog.show()
+            } else {
+                Toast.makeText(this, "Por favor, corrige los errores antes de continuar", Toast.LENGTH_SHORT).show()
+            }
+        }
 
         tietEmail.doOnTextChanged { text, _, _, _ -> viewModel.actualizaEmail(text.toString()) }
         tietPassword.doOnTextChanged { text, _, _, _ ->

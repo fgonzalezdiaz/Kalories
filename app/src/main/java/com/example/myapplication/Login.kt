@@ -17,6 +17,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import com.example.myapplication.itemapi.UserAPI
+import kotlinx.coroutines.launch
+import android.widget.Toast
 
 
 class LoginControl : ViewModel(){
@@ -107,8 +111,29 @@ class Login : AppCompatActivity() {
         }
 
         btLogIn.setOnClickListener {
-            val intent = Intent(this, MainMenu::class.java)
-            startActivity(intent)
+            val email = emailLoginBox.text.toString()
+            val pass = passwordLoginBox.text.toString()
+            
+            lifecycleScope.launch {
+                try {
+                    val response = UserAPI.API().login(email, pass)
+                    if (response.isSuccessful && response.body() != null) {
+                        val user = response.body()!!
+                        UserSession.userId = user.id ?: 1L
+                        UserSession.email = user.email
+                        
+                        Toast.makeText(this@Login, "Bienvenido ${user.email}", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this@Login, MainMenu::class.java)
+                        startActivity(intent)
+                        finish()
+                    } else {
+                        tvBenvingut.text = "Error: Credenciales incorrectas"
+                        tvBenvingut.setTextColor(Color.RED)
+                    }
+                } catch (e: Exception) {
+                    Toast.makeText(this@Login, "Error de red: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
         }
 
     }

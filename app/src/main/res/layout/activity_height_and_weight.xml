@@ -65,6 +65,7 @@
                 android:textColor="@color/text_secondary"
                 />
             <NumberPicker
+                android:id="@+id/npHeight"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 />
@@ -86,6 +87,7 @@
                 android:textColor="@color/text_secondary"
                 />
             <NumberPicker
+                android:id="@+id/npWeight"
                 android:layout_width="120dp"
                 android:layout_height="60dp"
                 />

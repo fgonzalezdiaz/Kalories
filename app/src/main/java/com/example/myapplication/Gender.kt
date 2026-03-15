@@ -39,8 +39,15 @@ class Gender : AppCompatActivity() {
 
 
         mbContinuar.setOnClickListener {
-            val intent = Intent(this, BirthDate::class.java)
-            startActivity(intent)
+            val autoCompleteTextView = findViewById<AutoCompleteTextView>(R.id.tvSexSelector)
+            val genero = autoCompleteTextView.text.toString()
+            if (genero.isNotEmpty()) {
+                RegistrationData.genero = genero
+                val intent = Intent(this, BirthDate::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Por favor, selecciona tu género", Toast.LENGTH_SHORT).show()
+            }
         }
         btnBack.setOnClickListener {
             val intent = Intent( this, SignInActivity::class.java)

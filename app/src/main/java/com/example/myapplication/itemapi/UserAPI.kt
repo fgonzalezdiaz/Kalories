@@ -1,6 +1,6 @@
 package com.example.myapplication.itemapi
 
-import com.example.myapplication.service.HistorialPesoService
+import com.example.myapplication.service.UserService
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
@@ -13,27 +13,26 @@ import javax.net.ssl.SSLContext
 import javax.net.ssl.TrustManager
 import javax.net.ssl.X509TrustManager
 
-class HistorialPesoAPI {
+class UserAPI {
     companion object {
-        private var mItemAPI: HistorialPesoService? = null
+        private var mUserAPI: UserService? = null
 
         @Synchronized
-        fun API(): HistorialPesoService {
-            if (mItemAPI == null) {
-
+        fun API(): UserService {
+            if (mUserAPI == null) {
                 val gsondateformat = GsonBuilder()
-                    .setDateFormat("yyyy-MM-dd'T'HH:mm:ss")
+                    .setDateFormat("yyyy-MM-dd")
                     .create()
 
-                mItemAPI = Retrofit.Builder()
+                mUserAPI = Retrofit.Builder()
                     .baseUrl("http://158.101.112.242:8080/")
-                    .client(getUnsafeOkHttpClient()) 
+                    .client(getUnsafeOkHttpClient())
                     .addConverterFactory(NullOnEmptyConverterFactory())
                     .addConverterFactory(GsonConverterFactory.create(gsondateformat))
                     .build()
-                    .create(HistorialPesoService::class.java)
+                    .create(UserService::class.java)
             }
-            return mItemAPI!!
+            return mUserAPI!!
         }
 
         private fun getUnsafeOkHttpClient(): OkHttpClient {

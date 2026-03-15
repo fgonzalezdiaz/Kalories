@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
@@ -32,8 +33,14 @@ class BirthDate : AppCompatActivity() {
 
     private fun initListeners() {
         btnContinuar.setOnClickListener {
-            val intent = Intent(this, HeightAndWeight::class.java)
-            startActivity(intent)
+            val fecha = etFechaNacimiento.text.toString()
+            if (fecha.isNotEmpty()) {
+                RegistrationData.fechaNacimiento = fecha
+                val intent = Intent(this, HeightAndWeight::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "Por favor, selecciona tu fecha de nacimiento", Toast.LENGTH_SHORT).show()
+            }
         }
 
         btnBack.setOnClickListener {

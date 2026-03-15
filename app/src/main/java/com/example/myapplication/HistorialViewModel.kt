@@ -17,7 +17,6 @@ class HistorialViewModel : ViewModel() {
     private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
-    // Guardamos una copia de la lista completa para poder filtrar sin volver a llamar a la API
     private var listaCompletaCache: List<HistorialPeso> = emptyList()
 
     private val apiService = HistorialPesoAPI.API()
@@ -25,7 +24,7 @@ class HistorialViewModel : ViewModel() {
     fun obtenerHistorial() {
         viewModelScope.launch {
             try {
-                val response = apiService.findAll()
+                val response = apiService.findByIdUser(UserSession.userId)
                 if (response.isSuccessful) {
                     val lista = response.body() ?: emptyList()
                     listaCompletaCache = lista
@@ -44,7 +43,6 @@ class HistorialViewModel : ViewModel() {
         }
     }
 
-    // Llama al POST de Retrofit que configuramos antes
     fun crearNuevoPeso(fecha: String, peso: Int, idUser: Long) {
         viewModelScope.launch {
             try {
@@ -69,12 +67,11 @@ class HistorialViewModel : ViewModel() {
         }
     }
 
-    // Llama al PUT de Retrofit para modificar un peso existente
     fun modificarPeso(id: Long, fecha: String, peso: Int) {
         viewModelScope.launch {
             try {
                 Log.d("HistorialViewModel", "Modificando peso: id=$id, fecha=$fecha, peso=$peso")
-                val response = apiService.update(id, fecha, peso)
+                val response = apiService.update(id, fecha, peso, UserSession.userId)
                 if (response.isSuccessful) {
                     Log.d("HistorialViewModel", "Peso modificado con éxito")
                     _errorMessage.value = "Peso modificado correctamente"
@@ -93,7 +90,6 @@ class HistorialViewModel : ViewModel() {
         }
     }
 
-    // Llama al DELETE de Retrofit para eliminar un peso
     fun eliminarPeso(historialPeso: HistorialPeso) {
         viewModelScope.launch {
             try {
@@ -117,7 +113,6 @@ class HistorialViewModel : ViewModel() {
         }
     }
 
-    // Replica exactamente la lógica de tu filtro original pero sobre los objetos de la BD
     fun filtrarLista(filtro: String) {
         if (filtro.isBlank()) {
             // Si el filtro está vacío, mostramos todo

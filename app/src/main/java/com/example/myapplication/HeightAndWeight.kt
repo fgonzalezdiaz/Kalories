@@ -12,6 +12,8 @@ import androidx.core.view.WindowInsetsCompat
 class HeightAndWeight : AppCompatActivity() {
     private lateinit var btnContinuar : Button
     private lateinit var btnBack : ImageView
+    private lateinit var npHeight: android.widget.NumberPicker
+    private lateinit var npWeight: android.widget.NumberPicker
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,10 +26,22 @@ class HeightAndWeight : AppCompatActivity() {
     private fun initComponents(){
         btnContinuar = findViewById(R.id.btnContinuar)
         btnBack = findViewById(R.id.btnBack)
+        npHeight = findViewById(R.id.npHeight)
+        npWeight = findViewById(R.id.npWeight)
+        
+        npHeight.minValue = 100
+        npHeight.maxValue = 250
+        npHeight.value = 170
+        
+        npWeight.minValue = 30
+        npWeight.maxValue = 200
+        npWeight.value = 70
     }
 
     private fun initListeners(){
         btnContinuar.setOnClickListener {
+            RegistrationData.altura = npHeight.value
+            RegistrationData.peso = npWeight.value.toDouble()
             val intent = Intent(this, DailyActivity::class.java)
             startActivity(intent)
         }

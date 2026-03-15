@@ -1,6 +1,5 @@
 package com.example.myapplication.service
 
-import android.R
 import com.example.myapplication.model.HistorialPeso
 import retrofit2.Response
 import retrofit2.http.Body
@@ -14,7 +13,10 @@ import retrofit2.http.Query
 
 interface HistorialPesoService {
     @GET("api/historial-peso/findAll")
-    suspend fun findAll() : Response<List<HistorialPeso>>
+    suspend fun findAll(@Query("id_user") idUser: Long) : Response<List<HistorialPeso>>
+
+    @GET("api/historial-peso/findByIdUser")
+    suspend fun findByIdUser(@Query("id_user") idUser: Long) : Response<List<HistorialPeso>>
 
     @POST("api/historial-peso/create")
     suspend fun create(
@@ -27,7 +29,8 @@ interface HistorialPesoService {
     suspend fun update(
         @Query("id") id: Long,
         @Query("fecha") fecha: String,
-        @Query("peso") peso: Int
+        @Query("peso") peso: Int,
+        @Query("id_user") idUser: Long
     ): Response<Void>
 
     @GET("api/historial-peso/findByUserAndWeight")
@@ -36,7 +39,6 @@ interface HistorialPesoService {
             @Query("peso") peso : Int
     ): Response<List<HistorialPeso>>
 
-    // CORRECCIÓN EN KOTLIN (Si el backend no se puede cambiar):
     @HTTP(method = "DELETE", path = "api/historial-peso/delete", hasBody = true)
     suspend fun delete(@Body historialPeso : HistorialPeso): Response<Void>
 

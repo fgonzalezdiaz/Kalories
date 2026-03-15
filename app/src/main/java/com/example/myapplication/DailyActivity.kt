@@ -12,6 +12,7 @@ import androidx.core.view.WindowInsetsCompat
 class DailyActivity : AppCompatActivity() {
     private lateinit var btnContinuar : Button
     private lateinit var btnBack : ImageView
+    private lateinit var spActivityLevel: android.widget.Spinner
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +24,16 @@ class DailyActivity : AppCompatActivity() {
     private fun initComponents(){
         btnContinuar = findViewById(R.id.btnContinuar)
         btnBack = findViewById(R.id.btnBack)
+        spActivityLevel = findViewById(R.id.spActivityLevel)
+        
+        val options = listOf("Sedentario", "Ligero", "Moderado", "Intenso")
+        val adapter = android.widget.ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, options)
+        spActivityLevel.adapter = adapter
     }
 
     private fun initListeners(){
         btnContinuar.setOnClickListener {
+            RegistrationData.nivelActividad = spActivityLevel.selectedItemPosition
             val intent = Intent(this, Goal::class.java)
             startActivity(intent)
         }

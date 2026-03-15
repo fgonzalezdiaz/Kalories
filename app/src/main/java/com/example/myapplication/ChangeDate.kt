@@ -58,7 +58,7 @@ class ChangeDate : DialogFragment() {
         }
 
         btnOk.setOnClickListener {
-            val formattedDate = String.format(Locale.getDefault(), "%02d/%02d/%04d", selectedDay, selectedMonth + 1, selectedYear)
+            val formattedDate = String.format(Locale.getDefault(), "%04d-%02d-%02d", selectedYear, selectedMonth + 1, selectedDay)
             
             val result = Bundle().apply {
                 putString("SELECTED_DATE", formattedDate)
