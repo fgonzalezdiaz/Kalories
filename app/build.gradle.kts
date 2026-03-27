@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
+    id("com.google.gms.google-services")  // Firebase plugin
 }
 
 android {
@@ -43,8 +44,10 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
-  //  implementation(libs.firebase.auth)
-   // implementation(libs.firebase.firestore)
+    // Firebase BoM (gestiona les versions automàticament)
+    implementation(platform("com.google.firebase:firebase-bom:33.7.0"))
+    // Firestore
+    implementation("com.google.firebase:firebase-firestore")
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)

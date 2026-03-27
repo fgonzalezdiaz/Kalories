@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,10 +8,9 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.myapplication.R
+import com.example.myapplication.RegistrationData
 import com.google.android.material.button.MaterialButton
-import kotlin.toString
 
 class Gender : AppCompatActivity() {
     private val opciones = listOf("Hombre", "Mujer")

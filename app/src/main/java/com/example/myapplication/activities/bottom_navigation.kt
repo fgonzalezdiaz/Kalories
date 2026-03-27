@@ -1,13 +1,13 @@
-package com.example.myapplication
+package com.example.myapplication.activities
 
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.example.myapplication.R
 import com.example.myapplication.databinding.ActivityBottomNavigationBinding
 
 class bottom_navigation : AppCompatActivity() {

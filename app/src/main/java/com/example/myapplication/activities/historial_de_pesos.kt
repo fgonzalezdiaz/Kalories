@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -12,9 +12,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.CustomAdapter
+import com.example.myapplication.HistorialViewModel
+import com.example.myapplication.R
+import com.example.myapplication.UserSession
+import com.example.myapplication.fragments.Configuration
+import com.example.myapplication.fragments.ContactUs
+import com.example.myapplication.model.HistorialPeso
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
-import java.io.File
 
 class historial_de_pesos : AppCompatActivity() {
 
@@ -145,7 +151,7 @@ class historial_de_pesos : AppCompatActivity() {
             .commit()
     }
 
-    private fun mostrarOpcionesPeso(item: com.example.myapplication.model.HistorialPeso) {
+    private fun mostrarOpcionesPeso(item: HistorialPeso) {
         val builder = androidx.appcompat.app.AlertDialog.Builder(this)
         builder.setTitle("Opciones del registro")
         builder.setMessage("¿Qué desea hacer con el registro de ${item.fecha} (${item.peso}kg)?")
@@ -162,7 +168,7 @@ class historial_de_pesos : AppCompatActivity() {
         builder.show()
     }
 
-    private fun mostrarDialogoModificar(item: com.example.myapplication.model.HistorialPeso) {
+    private fun mostrarDialogoModificar(item: HistorialPeso) {
         val builder = androidx.appcompat.app.AlertDialog.Builder(this)
         builder.setTitle("Modificar peso")
         
@@ -183,7 +189,7 @@ class historial_de_pesos : AppCompatActivity() {
         builder.show()
     }
 
-    private fun confirmarEliminar(item: com.example.myapplication.model.HistorialPeso) {
+    private fun confirmarEliminar(item: HistorialPeso) {
         val builder = androidx.appcompat.app.AlertDialog.Builder(this)
         builder.setTitle("Confirmar eliminación")
         builder.setMessage("¿Estás seguro de que quieres eliminar este registro?")

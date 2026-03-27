@@ -1,11 +1,11 @@
-package com.example.myapplication
+package com.example.myapplication.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.myapplication.databinding.FragmentContactUsBinding
+import com.example.myapplication.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -14,20 +14,13 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [ContactUs.newInstance] factory method to
+ * Use the [stats.newInstance] factory method to
  * create an instance of this fragment.
  */
-class ContactUs : Fragment() {
+class stats : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-
-    // Inicializas el _binding con el nombre del Layout en este caso
-    // fragment_contact_us = FragmentContactUsBinding
-    private var _binding: FragmentContactUsBinding? = null
-
-    // 2. Una propietat de només lectura per no haver d'usar "!!" a tot arreu
-    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,20 +28,14 @@ class ContactUs : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
     }
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle? ): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         // Inflate the layout for this fragment
-        // (Sin viewBinding) return inflater.inflate(R.layout.fragment_contact_us, container, false)
-        _binding = FragmentContactUsBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onDestroyView(){
-        super.onDestroyView()
-        _binding = null
+        return inflater.inflate(R.layout.fragment_stats, container, false)
     }
 
     companion object {
@@ -58,12 +45,12 @@ class ContactUs : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ContactUs.
+         * @return A new instance of fragment stats.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            ContactUs().apply {
+            stats().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

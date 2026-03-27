@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.activities
 
 import android.app.Dialog
 import android.content.Intent
@@ -15,6 +15,8 @@ import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.myapplication.R
+import com.example.myapplication.RegistrationData
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 

@@ -1,6 +1,7 @@
 package com.example.myapplication.service
 
 import com.example.myapplication.model.User
+import okhttp3.ResponseBody
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -8,7 +9,7 @@ import retrofit2.http.Query
 
 interface UserService {
     @POST("api/users/create")
-    suspend fun create(@Body user: User): Response<String>
+    suspend fun create(@Body user: User): Response<okhttp3.ResponseBody>
 
     @POST("api/users/login")
     suspend fun login(

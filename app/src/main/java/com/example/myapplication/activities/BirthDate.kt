@@ -1,4 +1,4 @@
-package com.example.myapplication
+package com.example.myapplication.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,6 +8,9 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import com.example.myapplication.R
+import com.example.myapplication.RegistrationData
+import com.example.myapplication.fragments.ChangeDate
 import com.google.android.material.button.MaterialButton
 
 class BirthDate : AppCompatActivity() {
