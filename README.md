@@ -29,3 +29,46 @@ Se ha refactorizado la lógica de autenticación en las actividades `Login` y `S
   - Cuando el usuario escribe, el ViewModel valida los datos y actualiza el `LiveData` de error. La Activity reacciona automáticamente a estos cambios mostrando u ocultando los mensajes de error en la UI.
 
 Esta implementación mejora la testabilidad y asegura que la UI esté siempre sincronizada con el estado actual de los datos, evitando llamadas bloqueantes o gestión manual de estados.
+
+### Estadísticas de uso y gráficas (ACT09)
+
+Se ha añadido una pantalla de informes accesible desde el fragmento de **Configuración** que muestra estadísticas de uso de la aplicación y las representa con gráficos usando la librería **MPAndroidChart**.
+
+#### Clases principales
+
+- **`SumadorTiempoUso`** (object singleton en `helpers/`): registra el tiempo que el usuario pasa en cada pantalla. Se inicializa en `KaloriesApplication.onCreate()` y se actualiza automáticamente en `onResume` / `onPause` de cada Activity.
+
+- **`TrackedAppCompatActivity`**: clase base que extiende `AppCompatActivity`. Todas las activities del flujo principal heredan de ella para que el tiempo se contabilice sin tener que repetir código en cada pantalla.
+
+- **`UsageStatsRepository`** (`persistence/`): guarda los datos localmente usando **DataStore Preferences**. Almacena el tiempo total en primer plano, el tiempo por pantalla, las visitas por pantalla y el número de pesos añadidos/eliminados en el historial. Los mapas de pantalla se serializan como `String` con formato `clave=valor|clave=valor` al no ser DataStore compatible con tipos `Map` directamente.
+
+- **`FirestoreUsageSync`** (`persistence/`): sube el snapshot actual a Firestore cuando el usuario sale de una pantalla. Se usa el `userId` de sesión como identificador del documento.
+
+- **`UsageCo2Estimator`** (`helpers/`): calcula una estimación orientativa de kWh consumidos y kg de CO₂ equivalente a partir del tiempo total de uso, usando las constantes del PDF de la práctica (0,005 kWh/h y 350 g CO₂/kWh).
+
+- **`UsageReportsActivity`** (`activities/`): pantalla con tres gráficos:
+  - **Barras** – minutos por pantalla (top 10 actividades).
+  - **Pastel** – distribución porcentual del tiempo.
+  - **Barras** – pesos añadidos vs. eliminados en el historial.
+
+#### Flujo de datos
+
+```
+onResume / onPause
+      │
+SumadorTiempoUso  ──►  UsageStatsRepository (DataStore local)
+                                  │
+                        FirestoreUsageSync.push()  ──►  Firestore
+                                  │
+                        UsageReportsActivity.getSnapshot()  ──►  gráficos
+```
+
+#### Dependencias añadidas en `build.gradle`
+
+```
+implementation("com.github.PhilJay:MPAndroidChart:v3.1.0")   // gráficos
+implementation("androidx.datastore:datastore-preferences:1.1.1")
+implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
+```
+
+JitPack se añadió en `settings.gradle.kts` como repositorio adicional para poder resolver MPAndroidChart.

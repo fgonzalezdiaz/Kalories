@@ -15,6 +15,18 @@
             android:layout_gravity="center"
             >
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnInformesUso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="@string/informes_uso_boton"
+                android:textColor="@color/on_primary"
+                app:backgroundTint="@color/primary"
+                app:cornerRadius="8dp"
+                app:strokeColor="@color/primary_variant"
+                app:strokeWidth="1dp" />
+
             <LinearLayout
                 android:id="@+id/btnParametros"
                 android:layout_width="match_parent"

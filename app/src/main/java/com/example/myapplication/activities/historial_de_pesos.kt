@@ -8,7 +8,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,7 +21,7 @@ import com.example.myapplication.model.HistorialPeso
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 
-class historial_de_pesos : AppCompatActivity() {
+class historial_de_pesos : TrackedAppCompatActivity() {
 
     private val viewModel: HistorialViewModel by viewModels()
     private lateinit var adapter: CustomAdapter

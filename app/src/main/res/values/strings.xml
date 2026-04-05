@@ -87,4 +87,18 @@
     <string name="configuraci_menu_navigation_bar" />
     <string name="ajustes_menu_navigation_bar" />
     <string name="bienvenido">Bienvenido</string>
+    <string name="informes_uso_titulo">Uso y huella</string>
+    <string name="resumen_energia_co2">Resumen de uso y CO₂e</string>
+    <string name="nota_co2_metodo">Estimación orientativa: ~0,005 kWh/h de uso activo y ~350 g CO₂/kWh (referencia tipo mix eléctrico UE). No sustituye a un medidor real.</string>
+    <string name="grafico_tiempo_por_pantalla">Tiempo por pantalla (min)</string>
+    <string name="grafico_distribucion_tiempo">Distribución del tiempo</string>
+    <string name="grafico_acciones_historial">Acciones en historial de peso</string>
+    <string name="sin_datos_uso">Aún no hay datos de uso</string>
+    <string name="minutos_por_pantalla">Minutos</string>
+    <string name="tiempo_total_formato">Tiempo total en primer plano: %1$s</string>
+    <string name="kwh_estimado_formato">Energía estimada: %1$.4f kWh</string>
+    <string name="co2_estimado_formato">CO₂e estimado: %1$.4f kg</string>
+    <string name="items_anadidos">Añadidos</string>
+    <string name="items_eliminados">Eliminados</string>
+    <string name="informes_uso_boton">Informes de uso y CO₂</string>
 </resources>

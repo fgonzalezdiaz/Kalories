@@ -5,11 +5,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import com.example.myapplication.RegistrationData
 
-class DailyActivity : AppCompatActivity() {
+class DailyActivity : TrackedAppCompatActivity() {
     private lateinit var btnContinuar : Button
     private lateinit var btnBack : ImageView
     private lateinit var spActivityLevel: android.widget.Spinner

@@ -7,12 +7,11 @@ import android.widget.ArrayAdapter
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import com.example.myapplication.RegistrationData
 import com.google.android.material.button.MaterialButton
 
-class Gender : AppCompatActivity() {
+class Gender : TrackedAppCompatActivity() {
     private val opciones = listOf("Hombre", "Mujer")
 
     private lateinit var mbContinuar : MaterialButton

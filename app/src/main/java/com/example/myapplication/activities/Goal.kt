@@ -7,14 +7,13 @@ import android.widget.ImageView
 import android.widget.Spinner
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.example.myapplication.R
 import com.example.myapplication.RegistrationData
 import com.example.myapplication.itemapi.UserAPI
 import kotlinx.coroutines.launch
 
-class Goal : AppCompatActivity() {
+class Goal : TrackedAppCompatActivity() {
     private lateinit var btnContinuar : Button
     private lateinit var btnBack: ImageView
     private lateinit var spObjectiu: Spinner

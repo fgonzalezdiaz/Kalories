@@ -1,15 +1,17 @@
 package com.example.myapplication
 
+import android.app.Application
 import android.util.Log
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.myapplication.helpers.SumadorTiempoUso
 import com.example.myapplication.itemapi.HistorialPesoAPI
 import com.example.myapplication.model.HistorialPeso
 import kotlinx.coroutines.launch
 
-class HistorialViewModel : ViewModel() {
+class HistorialViewModel(application: Application) : AndroidViewModel(application) {
 
     private val _listaHistorial = MutableLiveData<List<HistorialPeso>>()
     val listaHistorial: LiveData<List<HistorialPeso>> = _listaHistorial
@@ -51,7 +53,7 @@ class HistorialViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     Log.d("HistorialViewModel", "Peso creado con éxito")
                     _errorMessage.value = "Peso guardado correctamente"
-                    // Si se creó con éxito, volvemos a pedir la lista actualizada al servidor
+                    SumadorTiempoUso.recordHistorialItemAdded()
                     obtenerHistorial()
                 } else {
                     val errorBody = response.errorBody()?.string() ?: "Sin cuerpo de error"
@@ -98,6 +100,7 @@ class HistorialViewModel : ViewModel() {
                 if (response.isSuccessful) {
                     Log.d("HistorialViewModel", "Peso eliminado con éxito")
                     _errorMessage.value = "Peso eliminado correctamente"
+                    SumadorTiempoUso.recordHistorialItemRemoved()
                     obtenerHistorial()
                 } else {
                     val errorBody = response.errorBody()?.string() ?: "Sin cuerpo de error"
@@ -126,4 +129,5 @@ class HistorialViewModel : ViewModel() {
             _listaHistorial.value = listaFiltrada
         }
     }
+
 }

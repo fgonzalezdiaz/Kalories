@@ -3,10 +3,9 @@ package com.example.myapplication.activities
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.databinding.ActivitySignInOrLogInBinding
 
-class SignInOrLogInActivity : AppCompatActivity() {
+class SignInOrLogInActivity : TrackedAppCompatActivity() {
 
     // Iniciamos el Binding para poder asi utilizar las variables de dentro del activity
     // como en este caso el boton Login y Registrarse, sin necesidad del FindViewById()

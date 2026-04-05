@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -84,7 +83,7 @@ class SignInControl : ViewModel() {
     }
 }
 
-class SignInActivity : AppCompatActivity() {
+class SignInActivity : TrackedAppCompatActivity() {
     private lateinit var mbRegister: MaterialButton
     private lateinit var btnBack: ImageView
     private lateinit var tietEmail: TextInputEditText

@@ -2,10 +2,9 @@ package com.example.myapplication.activities
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 
-class InitialScreen : AppCompatActivity() {
+class InitialScreen : TrackedAppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

@@ -9,7 +9,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doOnTextChanged
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -59,7 +58,7 @@ class LoginControl : ViewModel(){
     }
 }
 
-class Login : AppCompatActivity() {
+class Login : TrackedAppCompatActivity() {
     private lateinit var btLogIn : Button
     private lateinit var btnBack : ImageView
     private lateinit var emailLoginBox : EditText

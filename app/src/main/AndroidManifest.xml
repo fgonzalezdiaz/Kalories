@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".KaloriesApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -64,6 +65,10 @@
         <activity
             android:name=".activities.SignInOrLogInActivity"
             android:exported="false" />
+        <activity
+            android:name=".activities.UsageReportsActivity"
+            android:exported="false"
+            android:label="@string/informes_uso_titulo" />
     </application>
 
 </manifest>

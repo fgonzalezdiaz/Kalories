@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.myapplication.R
 import com.example.myapplication.fragments.Configuration
@@ -12,7 +11,7 @@ import com.example.myapplication.fragments.ContactUs
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.button.MaterialButton
 
-class MainMenu : AppCompatActivity() {
+class MainMenu : TrackedAppCompatActivity() {
     private lateinit var mbRegistroDiario: Button
     private lateinit var mbWeightHistory : MaterialButton
     private lateinit var bottomNavigation: BottomNavigationView

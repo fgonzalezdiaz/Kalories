@@ -4,14 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.myapplication.R
 import com.example.myapplication.fragments.Configuration
 import com.example.myapplication.fragments.ContactUs
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class DailyReports : AppCompatActivity() {
+class DailyReports : TrackedAppCompatActivity() {
     private lateinit var goBack: ImageView
     private lateinit var bottomNavigation: BottomNavigationView
 

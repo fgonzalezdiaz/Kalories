@@ -7,13 +7,12 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
 import com.example.myapplication.R
 import com.example.myapplication.RegistrationData
 import com.example.myapplication.fragments.ChangeDate
 import com.google.android.material.button.MaterialButton
 
-class BirthDate : AppCompatActivity() {
+class BirthDate : TrackedAppCompatActivity() {
     private lateinit var btnContinuar: MaterialButton
     private lateinit var btnBack: ImageView
     private lateinit var ibCalendar: ImageButton
