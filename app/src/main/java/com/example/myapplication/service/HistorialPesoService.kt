@@ -18,20 +18,22 @@ interface HistorialPesoService {
     @GET("api/historial-peso/findByIdUser")
     suspend fun findByIdUser(@Query("id_user") idUser: Long) : Response<List<HistorialPeso>>
 
+    // Retorna l'objecte creat amb l'ID generat per la BBDD
     @POST("api/historial-peso/create")
     suspend fun create(
         @Query("fecha") fecha: String,
         @Query("peso") peso: Int,
         @Query("id_user") idUser: Long
-    ): Response<Void>
+    ): Response<HistorialPeso>
 
+    // Retorna l'objecte modificat
     @PUT("api/historial-peso/update")
     suspend fun update(
         @Query("id") id: Long,
         @Query("fecha") fecha: String,
         @Query("peso") peso: Int,
         @Query("id_user") idUser: Long
-    ): Response<Void>
+    ): Response<HistorialPeso>
 
     @GET("api/historial-peso/findByUserAndWeight")
     suspend fun findByUserAndWeight(

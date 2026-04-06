@@ -9,7 +9,9 @@ import androidx.lifecycle.viewModelScope
 import com.example.myapplication.helpers.SumadorTiempoUso
 import com.example.myapplication.itemapi.HistorialPesoAPI
 import com.example.myapplication.model.HistorialPeso
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class HistorialViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -26,7 +28,11 @@ class HistorialViewModel(application: Application) : AndroidViewModel(applicatio
     fun obtenerHistorial() {
         viewModelScope.launch {
             try {
-                val response = apiService.findByIdUser(UserSession.userId)
+                // withContext(Dispatchers.IO) mou la crida de xarxa al thread d'IO
+                // alliberant el thread principal (UI) mentre espera la resposta
+                val response = withContext(Dispatchers.IO) {
+                    apiService.findByIdUser(UserSession.userId)
+                }
                 if (response.isSuccessful) {
                     val lista = response.body() ?: emptyList()
                     listaCompletaCache = lista
@@ -49,10 +55,12 @@ class HistorialViewModel(application: Application) : AndroidViewModel(applicatio
         viewModelScope.launch {
             try {
                 Log.d("HistorialViewModel", "Enviando peso: fecha=$fecha, peso=$peso, idUser=$idUser")
-                val response = apiService.create(fecha, peso, idUser)
+                val response = withContext(Dispatchers.IO) {
+                    apiService.create(fecha, peso, idUser)
+                }
                 if (response.isSuccessful) {
                     Log.d("HistorialViewModel", "Peso creado con éxito")
-                    _errorMessage.value = "Peso guardado correctamente"
+                    _errorMessage.value = "Peso guardado correctament"
                     SumadorTiempoUso.recordHistorialItemAdded()
                     obtenerHistorial()
                 } else {
@@ -73,7 +81,9 @@ class HistorialViewModel(application: Application) : AndroidViewModel(applicatio
         viewModelScope.launch {
             try {
                 Log.d("HistorialViewModel", "Modificando peso: id=$id, fecha=$fecha, peso=$peso")
-                val response = apiService.update(id, fecha, peso, UserSession.userId)
+                val response = withContext(Dispatchers.IO) {
+                    apiService.update(id, fecha, peso, UserSession.userId)
+                }
                 if (response.isSuccessful) {
                     Log.d("HistorialViewModel", "Peso modificado con éxito")
                     _errorMessage.value = "Peso modificado correctamente"
@@ -96,7 +106,9 @@ class HistorialViewModel(application: Application) : AndroidViewModel(applicatio
         viewModelScope.launch {
             try {
                 Log.d("HistorialViewModel", "Eliminando peso: id=${historialPeso.id}")
-                val response = apiService.delete(historialPeso)
+                val response = withContext(Dispatchers.IO) {
+                    apiService.delete(historialPeso)
+                }
                 if (response.isSuccessful) {
                     Log.d("HistorialViewModel", "Peso eliminado con éxito")
                     _errorMessage.value = "Peso eliminado correctamente"
