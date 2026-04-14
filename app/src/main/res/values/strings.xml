@@ -101,4 +101,5 @@
     <string name="items_anadidos">Añadidos</string>
     <string name="items_eliminados">Eliminados</string>
     <string name="informes_uso_boton">Informes de uso y CO₂</string>
+    <string name="comando_por_voz">Comando por voz</string>
 </resources>
