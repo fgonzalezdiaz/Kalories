@@ -129,7 +129,7 @@ class Login : TrackedAppCompatActivity() {
                         tvBenvingut.setTextColor(Color.RED)
                     }
                 } catch (e: Exception) {
-                    Toast.makeText(this@Login, "Error de red: ${e.message}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@Login, "Error de red", Toast.LENGTH_SHORT).show()
                 }
             }
         }
