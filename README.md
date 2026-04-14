@@ -72,3 +72,40 @@ implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.7.3")
 ```
 
 JitPack se añadió en `settings.gradle.kts` como repositorio adicional para poder resolver MPAndroidChart.
+
+### Comandos por voz (SpeechRecognizer)
+
+Se ha añadido un botón de micrófono en `MainMenu` que permite al usuario navegar por la aplicación mediante comandos de voz en español, usando la API `SpeechRecognizer` de Android.
+
+#### Permisos
+
+- **Manifest**: se declara `android.permission.RECORD_AUDIO` en `AndroidManifest.xml`.
+- **Runtime**: al pulsar el botón, se comprueba el permiso con `ContextCompat.checkSelfPermission()`. Si no está concedido, se solicita con `ActivityCompat.requestPermissions()` y se gestiona la respuesta en `onRequestPermissionsResult()`.
+
+#### Comandos disponibles
+
+| Comando de voz | Acción |
+|---|---|
+| *"tiempo de uso"* | Abre `UsageReportsActivity` (estadísticas) |
+| *"historial de uso"* | Abre `HeightAndWeight` (historial de peso) |
+| *"registro"* | Abre `SignInActivity` (registro de cuenta) |
+
+#### Implementación técnica
+
+- **`SpeechRecognizer`**: se crea en `initComponents()` con `SpeechRecognizer.createSpeechRecognizer(this)`.
+- **Intent de reconocimiento**: configurado con `LANGUAGE_MODEL_FREE_FORM` e idioma `es-ES`.
+- **`RecognitionListener`**: al recibir resultados en `onResults()`, el texto se convierte a minúsculas y se pasa a `handleVoiceCommand()`, que usa `String.contains()` para detectar el comando y lanzar la Activity correspondiente.
+- **Flujo**:
+
+```
+Botón 🎤  ──►  checkPermission()
+                 │
+          ┌──────┴──────┐
+       Concedido     Denegado
+          │              │
+   startListening()   requestPermissions()
+          │              │
+   onResults()     onRequestPermissionsResult()
+          │              │
+   handleVoiceCommand()  startListening() / Toast error
+```
