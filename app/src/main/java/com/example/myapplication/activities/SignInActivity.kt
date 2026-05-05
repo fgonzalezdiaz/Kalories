@@ -11,77 +11,17 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.doOnTextChanged
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.example.myapplication.R
 import com.example.myapplication.RegistrationData
+import com.example.myapplication.viewmodel.SignInControl
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
 
-class SignInControl : ViewModel() {
-
-    private val _tvInfo = MutableLiveData<TextView>()
-    val tvInfo: LiveData<TextView> = _tvInfo
-    private val _email = MutableLiveData<String>()
-    val email: LiveData<String> = _email //
-    private val _password = MutableLiveData<String>()
-    val password: LiveData<String> = _password //
-    private val _password2 = MutableLiveData<String>()
-    val password2: LiveData<String> = _password2 //
-    private val _errorEmail = MutableLiveData<String?>()
-    val errorEmail: LiveData<String?> = _errorEmail
-    private val _errorPassword = MutableLiveData<String?>()
-    val errorPassword: LiveData<String?> = _errorPassword
-    private val _errorPassword2 = MutableLiveData<String?>()
-    val errorPassword2: LiveData<String?> = _errorPassword2
-
-    fun actualizaEmail(email: String) {
-        _email.value = email
-        checkEmail()
-    }
-
-    fun actualizaPassword(password: String) {
-        _password.value = password
-        checkPassword()
-    }
-
-    fun actualizaPassword2(password2: String) {
-        _password2.value = password2
-        checkPassword2()
-    }
-
-    fun checkEmail() {
-        val email = _email.value
-        if (email == null || email.isEmpty()) {
-            _errorEmail.value = "El email no puede estar vacío"
-        } else if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            _errorEmail.value = "El email no es válido"
-        } else {
-            _errorEmail.value = null
-        }
-    }
-    fun checkPassword() {
-        val password = _password.value
-        if (password == null || password.isEmpty()) {
-            _errorPassword.value = "La contraseña no puede estar vacía"
-        } else if (password.length < 6) {
-            _errorPassword.value = "La contraseña debe tener al menos 6 caracteres"
-        } else {
-            _errorPassword.value = null
-        }
-    }
-    fun checkPassword2() {
-        val password2 = _password2.value
-        if (password2 == null || password2.isEmpty()) {
-            _errorPassword2.value = "La contraseña no puede estar vacía"
-        } else if (password2 != _password.value) {
-            _errorPassword2.value = "Las contraseñas no coinciden"
-        } else {
-            _errorPassword2.value = null
-        }
-    }
-}
+/**
+ * Comandos para tests
+ * ./gradlew test
+ * ./gradlew connectedAndroidTest
+ * */
 
 class SignInActivity : TrackedAppCompatActivity() {
     private lateinit var mbRegister: MaterialButton

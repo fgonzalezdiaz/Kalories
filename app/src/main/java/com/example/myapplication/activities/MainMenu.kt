@@ -134,8 +134,8 @@ class MainMenu : TrackedAppCompatActivity() {
             command?.contains("tiempo de uso") == true -> {
                 startActivity(Intent(this, UsageReportsActivity::class.java))
             }
-            command?.contains("historial de uso") == true -> {
-                startActivity(Intent(this, HeightAndWeight::class.java))
+            command?.contains("historial de peso") == true -> {
+                startActivity(Intent(this, historial_de_pesos::class.java))
             }
             command?.contains("registro") == true -> {
                 startActivity(Intent(this, SignInActivity::class.java))
